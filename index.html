@@ -1,351 +1,232 @@
 <!DOCTYPE html>
-<html lang="kk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Q-Tion | Тест жасаушы</title>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ElbrusShop</title>
 <style>
-:root{--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--primary:#3b82f6;--border:#e2e8f0;--ok:#16a34a;--err:#dc2626}
-@media (prefers-color-scheme:dark){:root{--bg:#0f172a;--card:#1e293b;--text:#e2e8f0;--muted:#94a3b8;--border:#334155}}
-*{box-sizing:border-box}
-body{margin:0;font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text)}
-.wrap{max-width:720px;margin:0 auto;padding:32px 20px}
-h1{text-align:center;font-size:2.4rem;margin:0 0 4px;background:linear-gradient(135deg,#3b82f6,#1e40af);-webkit-background-clip:text;background-clip:text;color:transparent}
-h3{margin:0 0 12px}
-.sub{text-align:center;color:var(--muted);margin-bottom:28px}
-.card{background:var(--card);border-radius:24px;padding:28px;margin-bottom:20px;box-shadow:0 10px 25px rgba(0,0,0,.06)}
-.drop{border:2px dashed var(--border);border-radius:20px;padding:44px 20px;text-align:center;cursor:pointer;transition:.2s;margin-top:14px}
-.drop:hover,.drop.over{border-color:var(--primary);background:rgba(59,130,246,.06)}
-.drop b{font-size:1.15rem;display:block;margin-bottom:6px}
-.drop span{color:var(--muted);font-size:.95rem}
-button{padding:12px 20px;border:none;border-radius:999px;background:var(--primary);color:#fff;font-size:1rem;font-weight:600;cursor:pointer}
-button:hover{background:#2563eb}
-button.sec{background:transparent;color:var(--primary);border:2px solid var(--primary)}
-button.sm{padding:6px 14px;font-size:.88rem}
-button.danger{background:transparent;color:var(--err);border:2px solid var(--err)}
-.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-label{display:block;font-size:.9rem;color:var(--muted);margin:12px 0 4px}
-input[type=text],input[type=password],input:not([type]){width:100%;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:1rem}
-details summary{cursor:pointer;font-weight:600}
-.status{margin-top:16px;font-size:.98rem;line-height:1.5}
-.ok{color:var(--ok)}.err{color:var(--err)}
-.link{display:flex;gap:8px;margin-top:10px}
-.link input{flex:1}
-.hint{font-size:.85rem;color:var(--muted);margin-top:8px;line-height:1.5}
-.hidden{display:none}
-.item{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
-.item:last-child{border-bottom:none}
-.item .nm{flex:1;min-width:160px;font-weight:600;word-break:break-all}
-.item .nm small{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
-.item .bt{display:flex;gap:6px;flex-wrap:wrap}
-a.btn{display:inline-block;padding:6px 14px;font-size:.88rem;border-radius:999px;background:var(--primary);color:#fff;text-decoration:none;font-weight:600}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px}
-.modal .box{background:var(--card);border-radius:24px;padding:28px;text-align:center;max-width:360px;width:100%}
-#qrBox{background:#fff;padding:16px;border-radius:16px;display:inline-block;margin:12px 0}
-#qrBox img,#qrBox canvas{display:block}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <h1>Q-Tion</h1>
-  <div class="sub">Word файлды жүктеңіз, тест пен сілтеме дайын болады</div>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f6f6f9;color:#222}
+button{font:inherit;cursor:pointer;border:0}
+header{background:#fff;box-shadow:0 2px 12px #0001;position:sticky;top:0;z-index:30}
+.top{max-width:1300px;margin:auto;display:flex;align-items:center;gap:12px;padding:12px 16px}
+.hm{background:#f3e8ff;color:#a73afd;font-size:22px;width:42px;height:42px;border-radius:12px}
+.logo{background:linear-gradient(90deg,#cb11ab,#7a1fd6);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:26px;font-weight:800;letter-spacing:-1px}
+.sb{flex:1;position:relative}
+.sb input{width:100%;padding:12px 18px;border-radius:14px;border:2px solid #eee;background:#f6f6f9;outline:0;font-size:15px}.sb input:focus{border-color:#a73afd;background:#fff}
+#sg{position:absolute;top:100%;left:0;right:0;background:#fff;border-radius:0 0 14px 14px;box-shadow:0 8px 20px #0003;overflow:hidden}
+#sg div{padding:10px 18px;cursor:pointer}#sg div:hover{background:#f3e8ff}
+.nv{background:none;color:#333;display:flex;flex-direction:column;align-items:center;font-size:12px;position:relative;min-width:56px;gap:2px}
+.nv i{position:absolute;top:-6px;right:6px;background:#ff2d55;border-radius:10px;font-style:normal;padding:0 6px;font-size:11px}
+.nv i:empty{display:none}
+.w{max-width:1300px;margin:auto;padding:0 16px}
+.bw{overflow:hidden;border-radius:20px;margin:16px 0;position:relative}
+#bn{display:flex;transition:.6s}
+.sl{min-width:100%;height:230px;color:#fff;display:flex;flex-direction:column;justify-content:center;padding:0 7%}
+.sl h2{font-size:clamp(28px,5vw,56px)}.sl p{font-size:clamp(14px,2vw,20px);margin-top:8px}
+.ar{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:#fff9;font-size:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.chip{padding:9px 18px;border-radius:20px;background:#fff;border:1px solid #e3e3ea}
+.chip.on{background:#a73afd;color:#fff;border-color:#a73afd}
+.fl{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:#fff;padding:12px 14px;border-radius:14px;margin-bottom:14px}
+.fl input[type=number],.fl select{padding:8px;border:1px solid #ddd;border-radius:8px;width:105px}
+.fl select{width:auto}
+h3.t{margin:8px 0 12px;font-size:24px}
+.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;padding-bottom:24px}
+.c{background:#fff;border-radius:16px;padding:8px;cursor:pointer;transition:.2s;display:flex;flex-direction:column}
+.c:hover{box-shadow:0 8px 24px #a73afd30;transform:translateY(-3px)}
+.im{position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden}
+.im img{width:100%;height:100%;object-fit:cover;display:block}
+.dc{position:absolute;left:6px;bottom:6px;background:#ff2d55;color:#fff;border-radius:8px;padding:2px 8px;font-size:13px;font-weight:700}
+.hs{position:absolute;right:6px;top:6px;width:34px;height:34px;border-radius:50%;background:#fffd;color:#bbb;font-size:18px;display:flex;align-items:center;justify-content:center}
+.hs.on{color:#ff2d55}
+.pr{margin:8px 4px 2px;font-size:18px}.pr b{color:#cb11ab;font-size:19px}.pr s{color:#999;font-size:13px}
+.nm{font-size:13px;margin:0 4px;color:#444;height:34px;overflow:hidden}
+.rt{font-size:12px;color:#777;margin:4px}
+.bt{background:#a73afd;color:#fff;border-radius:10px;padding:10px;margin-top:auto;font-weight:600}
+.bt:hover{background:#8f1fe6}
+.bt2{background:#fff;color:#a73afd;border:2px solid #a73afd;border-radius:10px;padding:10px;font-weight:600}
+.em{grid-column:1/-1;text-align:center;color:#888;padding:40px}
+.ov{position:fixed;inset:0;background:#0007;z-index:40;display:none}.ov.on{display:block}
+.dw{position:fixed;top:0;bottom:0;width:min(440px,100%);background:#fff;z-index:50;transition:.3s;display:flex;flex-direction:column}
+#dr{right:-460px}#dr.on{right:0}#cg{left:-460px;width:min(320px,100%)}#cg.on{left:0}
+.dh{padding:16px;font-size:20px;font-weight:700;display:flex;justify-content:space-between;border-bottom:1px solid #eee}
+.x,.xx{background:none;font-size:22px}.xx{position:absolute;top:10px;right:14px}
+#ci{flex:1;overflow:auto;padding:10px 16px}
+.ci{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #eee;font-size:14px}
+.ci img{width:76px;height:90px;object-fit:cover;border-radius:10px}.ci>div{flex:1}.ci small{display:block;color:#888}
+.qq{display:flex;gap:8px;align-items:center;margin-top:6px}
+.qq button{width:28px;height:28px;border-radius:50%;background:#f3e8ff;color:#a73afd;font-size:16px}
+.qq .dl{background:#ffe3e8;color:#ff2d55;margin-left:auto}
+.fm{padding:12px 16px;border-top:1px solid #eee;font-size:14px;overflow:auto;max-height:55%}
+.fm input,.fm select{width:100%;padding:9px;border:1px solid #ddd;border-radius:8px;margin:3px 0}
+.fm label{display:block;margin:3px 0}.fm label input{width:auto;margin-right:6px}
+.pm{display:flex;gap:6px}.pm button{padding:0 14px;background:#f3e8ff;color:#a73afd;border-radius:8px}
+.tl{display:flex;justify-content:space-between;margin:4px 0}.tl.g{font-size:20px;font-weight:800;margin-top:8px}
+.cl{padding:14px 18px;border-bottom:1px solid #eee;cursor:pointer;display:flex;justify-content:space-between}.cl:hover{background:#f3e8ff}
+.md{position:fixed;inset:0;background:#0008;z-index:60;display:none;align-items:center;justify-content:center;padding:14px}.md.on{display:flex}
+.bx{background:#fff;border-radius:20px;padding:22px;width:min(780px,100%);max-height:92vh;overflow:auto;position:relative}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:20px}.big{width:100%;border-radius:14px;aspect-ratio:4/5;object-fit:cover}
+.pg h2{margin:6px 0}.ds{color:#555;margin:12px 0;font-size:14px}
+.sz{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.sz button{padding:8px 14px;border-radius:8px;background:#fff;border:1px solid #ccc}.sz .on{border-color:#a73afd;color:#a73afd}
+.row2{display:flex;gap:10px}.row2 button{flex:1}.dc2{background:#ff2d55;color:#fff;border-radius:6px;padding:1px 7px;font-size:13px}
+.lg input{width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:10px}
+.chk{font-family:'Courier New',monospace;max-width:400px;margin:auto}.chk h2{text-align:center;letter-spacing:3px}.chk hr{border:0;border-top:2px dashed #999;margin:10px 0}
+.cr{display:flex;justify-content:space-between;gap:8px;font-size:13px;margin:4px 0}.cr.t{font-weight:700;font-size:17px}.c0{text-align:center;font-size:12px;color:#555}
+.ts{position:fixed;bottom:24px;left:50%;transform:translate(-50%,90px);background:#222;color:#fff;padding:12px 22px;border-radius:30px;z-index:90;transition:.3s}.ts.on{transform:translate(-50%,0)}
+@media(max-width:700px){.nv span{display:none}.logo{font-size:20px}.pg{grid-template-columns:1fr}.sl{height:170px}.top{gap:6px}}
+@media print{body *{visibility:hidden}.chk,.chk *{visibility:visible}.chk{position:absolute;left:0;top:0}.nop{display:none!important}}
+</style></head><body>
+<header><div class="top">
+<button class="hm" onclick="oq('cg')">☰</button><div class="logo">ElbrusShop</div>
+<div class="sb"><input id="q" placeholder="Найти товары, бренды..." oninput="onq()" autocomplete="off"><div id="sg"></div></div>
+<button class="nv" onclick="adr()">📍<span id="ad">Адрес</span></button>
+<button class="nv" onclick="prof()">👤<span id="us">Войти</span></button>
+<button class="nv" onclick="fv()">♥<span>Избранное</span><i id="fc"></i></button>
+<button class="nv" onclick="oq('dr')">🛒<span>Корзина</span><i id="cc"></i></button>
+</div></header>
+<div class="w">
+<div class="bw"><div id="bn"></div><button class="ar" style="left:10px" onclick="bn(-1)">‹</button><button class="ar" style="right:10px" onclick="bn(1)">›</button></div>
+<div class="chips" id="ch"></div>
+<div class="fl">Цена: <input type="number" id="pmin" placeholder="от" oninput="show()"> — <input type="number" id="pmax" placeholder="до" oninput="show()">
+<select id="rt" onchange="show()"><option value="0">Любой рейтинг</option><option value="4.5">от 4,5 ★</option><option value="4.8">от 4,8 ★</option></select>
+<label><input type="checkbox" id="d50" onchange="show()"> Скидка от 50%</label>
+<select id="so" onchange="show()"><option value="">По популярности</option><option value="a">Дешевле</option><option value="d">Дороже</option><option value="r">По рейтингу</option><option value="s">По скидке</option><option value="n">По отзывам</option></select>
+<button class="bt2" style="padding:8px 14px" onclick="rs()">Сбросить</button></div>
+<h3 class="t" id="ttl"></h3><div class="gr" id="gr"></div><div style="text-align:center;padding-bottom:50px"><button class="bt" id="mr" style="padding:14px 40px;display:none" onclick="lim+=24;show(1)"></button></div></div>
 
-  <div class="card">
-    <label style="margin-top:0">Тест аты (бос қалса, файл аты алынады)</label>
-    <input id="tName" placeholder="мысалы: Физика 1-блок">
-    <div id="drop" class="drop">
-      <b>📄 Word (.docx) файлды осында енгізіңіз</b>
-      <span>немесе басып таңдаңыз</span>
-    </div>
-    <input type="file" id="file" accept=".docx" class="hidden">
-    <div id="status" class="status"></div>
-    <div id="result" class="hidden">
-      <div class="row">
-        <button id="btnOpen">▶ Тестті ашу</button>
-        <button id="btnDl" class="sec">⬇ index.html жүктеп алу</button>
-        <button id="btnPub" class="sec">🔗 Сілтеме жасау</button>
-      </div>
-      <div id="linkBox" class="hidden">
-        <div class="link"><input id="linkInp" readonly><button id="btnCopy">Көшіру</button><button id="btnQrNew" class="sec">QR</button></div>
-        <div id="readyMsg" class="hint"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="row" style="margin:0 0 8px;align-items:center;justify-content:space-between">
-      <h3 style="margin:0">📚 Менің тесттерім</h3>
-      <button id="btnRefresh" class="sec sm">↻ Жаңарту</button>
-    </div>
-    <div id="listBox" class="hint">Жүктелуде...</div>
-  </div>
-
-  <div class="card">
-    <details id="settings">
-      <summary>⚙ GitHub баптаулары (бір рет толтырасыз)</summary>
-      <label>GitHub аккаунт аты (username)</label>
-      <input id="gUser" placeholder="мысалы: semei123">
-      <label>Репозиторий аты</label>
-      <input id="gRepo" placeholder="мысалы: tests">
-      <label>Тармақ (branch)</label>
-      <input id="gBranch" value="main">
-      <label>Токен (fine-grained, Contents: Read and write)</label>
-      <input id="gToken" type="password" placeholder="github_pat_...">
-      <label style="display:flex;align-items:center;gap:8px;margin-top:14px;color:var(--text)">
-        <input type="checkbox" id="gAuto" style="width:auto"> Файл енгізгенде сілтемені бірден жасау
-      </label>
-      <div class="row" style="align-items:center"><button id="btnSave">Сақтау</button><span id="saveMsg" class="ok"></span></div>
-      <div class="hint">Токен тек осы браузерде сақталады және тек github.com-ға жіберіледі. Токенді тек осы бір репоға, тек «Contents» рұқсатымен жасаңыз.</div>
-    </details>
-  </div>
-</div>
-
-<div id="qrModal" class="modal hidden">
-  <div class="box">
-    <b id="qrTitle"></b>
-    <div><div id="qrBox"></div></div>
-    <div id="qrUrl" class="hint" style="word-break:break-all"></div>
-    <div class="row" style="justify-content:center">
-      <button id="qrDl">⬇ PNG жүктеу</button>
-      <button id="qrClose" class="sec">Жабу</button>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<div class="ov" id="ov" onclick="cq()"></div>
+<div class="dw" id="cg"><div class="dh">Каталог<button class="x" onclick="cq()">✕</button></div><div id="cl"></div></div>
+<div class="dw" id="dr"><div class="dh">Корзина<button class="x" onclick="cq()">✕</button></div><div id="ci"></div>
+<div class="fm">
+<div class="pm"><input id="pc" placeholder="Промокод: SALE10 / VIP20"><button onclick="ap()">OK</button></div>
+<input id="fn" placeholder="Имя"><input id="fp" placeholder="Телефон +7"><input id="fa" placeholder="Адрес доставки">
+<label><input type="radio" name="sh" checked onchange="ship='p';rd()">Пункт выдачи — бесплатно</label>
+<label><input type="radio" name="sh" onchange="ship='c';rd()">Курьер — 1 500 ₸ (бесплатно от 50 000 ₸)</label>
+<select id="py"><option>Kaspi Pay</option><option>Банковская карта</option><option>При получении</option></select>
+<div id="tt"></div><button class="bt" style="width:100%;margin-top:10px;padding:14px" onclick="co()">Заказать</button></div></div>
+<div class="md" id="md" onclick="if(event.target==this)mc()"><div class="bx" id="bx"></div></div>
+<div class="ts" id="ts"></div>
 <script>
-const TPL = "<!DOCTYPE html>\n<html lang=\"kk\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Q-Tion | Суретті тест<\/title>\n<style>\n:root{--bg:#f8fafc;--primary:#3b82f6;--white:#fff;--text:#1e293b;--success:#22c55e;--error:#ef4444;--shadow:0 10px 25px rgba(0,0,0,.05)}\nbody.dark{--bg:#0f172a;--white:#1e293b;--text:#e2e8f0;--shadow:0 10px 25px rgba(0,0,0,.3)}\nbody{margin:0;font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);transition:.2s}\n.app-container{max-width:800px;margin:40px auto;padding:20px}\n.hidden{display:none}\n.screen{animation:fadeIn .3s ease-out}\n@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}\nheader{text-align:center;margin-bottom:40px}\nheader h1{background:linear-gradient(135deg,#3b82f6,#1e40af);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:3rem;letter-spacing:-1px;margin:0}\nheader p{color:#64748b}\n.menu-card,.result-card{background:var(--white);padding:40px;border-radius:32px;box-shadow:var(--shadow)}\n.grid-menu{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}\nbutton{padding:14px 18px;border:none;border-radius:24px;background:var(--primary);color:#fff;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s}\nbutton:hover{background:#2563eb;transform:translateY(-2px);box-shadow:0 10px 20px rgba(59,130,246,.3)}\n.option-item{background:var(--white);border-radius:24px;border:2px solid #e2e8f0;cursor:pointer;transition:.2s;overflow:hidden;padding:20px;margin-bottom:10px}\n.option-item:hover{border-color:var(--primary);transform:translateX(4px)}\n.option-img{width:100%;max-height:180px;object-fit:contain;border-radius:16px;margin-bottom:12px;background:#f1f5f9;padding:8px;cursor:pointer}\n.option-text{font-size:1rem;font-weight:500;display:block;text-align:center}\n.correct{background:#dcfce7!important;border-color:var(--success)!important;color:#166534}\n.wrong{background:#fee2e2!important;border-color:var(--error)!important;color:#991b1b}\n.question-image{margin:20px 0;text-align:center;background:#f1f5f9;padding:16px;border-radius:24px}\n.question-image img{max-width:100%;max-height:320px;border-radius:16px;cursor:pointer}\n.quiz-footer{margin-top:20px;text-align:center}\n.contact-footer{margin-top:40px;padding-top:20px;border-top:1px solid #e2e8f0;text-align:center}\n.contact-link{display:inline-block;font-size:1.2rem;font-weight:600;color:#3b82f6;text-decoration:none;margin:0 15px}\n.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.9);justify-content:center;align-items:center}\n.modal-content{max-width:90%;max-height:90%;border-radius:16px}\n.close-modal{position:absolute;top:20px;right:35px;color:#fff;font-size:40px;cursor:pointer}\n.dark-toggle{position:fixed;top:20px;right:20px;background:var(--primary);border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow);z-index:100;font-size:22px}\n.score-circle{font-size:2rem;font-weight:700;margin:16px 0;text-align:center}\n.result-details{margin-top:20px;max-height:400px;overflow-y:auto;text-align:left;background:var(--white);border-radius:16px;padding:15px}\n.detail-item{padding:8px;border-bottom:1px solid #e2e8f0;font-size:14px}\n.detail-correct{color:var(--success);font-weight:bold}\n.detail-wrong{color:var(--error);font-weight:bold}\n.result-card .button-group{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin:30px 0 20px}\n.result-card .button-group button{border-radius:60px;padding:12px 28px;min-width:180px}\n@media(max-width:550px){.result-card .button-group button{min-width:unset;width:100%;max-width:280px}}\n<\/style>\n<\/head>\n<body>\n<div class=\"dark-toggle\" onclick=\"toggleDarkMode()\">🌙<\/div>\n<div id=\"imageModal\" class=\"modal\"><span class=\"close-modal\">&times;<\/span><img class=\"modal-content\" id=\"modalImg\"><\/div>\n<div class=\"app-container\">\n  <div id=\"home-screen\" class=\"screen\">\n    <header><h1>Q-Tion<\/h1><p id=\"subt\">Кәсіби деңгейдегі білім тексеру жүйесі<\/p><\/header>\n    <div class=\"menu-card\"><h3>Тест блогын таңдаңыз:<\/h3><div class=\"grid-menu\" id=\"block-list\"><\/div><\/div>\n  <\/div>\n  <div id=\"quiz-screen\" class=\"screen hidden\">\n    <div class=\"quiz-header\"><span id=\"progress-text\"><\/span><\/div>\n    <div id=\"question-box\"><h2 id=\"q-text\"><\/h2><div id=\"question-image-container\"><\/div><div id=\"options-list\"><\/div><\/div>\n    <div class=\"quiz-footer\"><button id=\"next-btn\" class=\"hidden\">Келесі сұрақ →<\/button><\/div>\n  <\/div>\n  <div id=\"result-screen\" class=\"screen hidden\">\n    <div class=\"result-card\">\n      <h2>Тест аяқталды!<\/h2>\n      <div class=\"score-circle\"><span id=\"final-score\">0<\/span><\/div>\n      <p id=\"result-message\"><\/p>\n      <div class=\"button-group\">\n        <button id=\"retry-wrong-btn\" class=\"hidden\">Қате жауаптарды қайталау<\/button>\n        <button onclick=\"restartQuiz()\">Басты мәзірге оралу<\/button>\n      <\/div>\n      <div id=\"result-details\" class=\"result-details\"><\/div>\n    <\/div>\n  <\/div>\n<\/div>\n<div class=\"contact-footer\"><p>Сұрақтар бойынша хабарласыңыз:<\/p><a href=\"https://www.instagram.com/prismwebq?igsh=ZWRlaDVtbHgwbTNl\" target=\"_blank\" class=\"contact-link\">@prismwebq.kz<\/a><a href=\"tel:+77066772714\" class=\"contact-link\">+7 (706) 677-27-14<\/a><\/div>\n<script>\nconst TEST_TITLE = __TITLE_JSON__;\nif (TEST_TITLE){ document.title = TEST_TITLE+' | Q-Tion'; document.getElementById('subt').textContent = TEST_TITLE; }\nconst quizData = __QUIZ_JSON__;\nconst BLOCK_SIZE = 25;\nconst TOTAL_BLOCKS = Math.ceil(quizData.length / BLOCK_SIZE);\nlet currentQuestions = [], currentIndex = 0, score = 0, userAnswers = [], enterHandler = null;\n\nfunction toggleDarkMode(){ document.body.classList.toggle('dark'); }\nfunction enableEnterToNext(){\n  if (enterHandler) document.removeEventListener('keydown', enterHandler);\n  enterHandler = function(e){\n    if (e.key === 'Enter'){\n      const btn = document.getElementById('next-btn');\n      if (btn && !btn.classList.contains('hidden')){ e.preventDefault(); loadNextQuestion(); }\n    }\n  };\n  document.addEventListener('keydown', enterHandler);\n}\nfunction buildBlockButtons(){\n  const c = document.getElementById('block-list'); c.innerHTML = '';\n  for (let i = 0; i < TOTAL_BLOCKS; i++){\n    const s = i*BLOCK_SIZE+1, e = Math.min((i+1)*BLOCK_SIZE, quizData.length);\n    const b = document.createElement('button'); b.textContent = `${s} - ${e}`; b.onclick = () => initQuiz(i); c.appendChild(b);\n  }\n}\nfunction initQuiz(bi){\n  const s = bi*BLOCK_SIZE, e = Math.min(s+BLOCK_SIZE, quizData.length);\n  currentQuestions = [];\n  for (let i = s; i < e; i++){\n    const q = quizData[i];\n    currentQuestions.push({id:q.id, text:q.question, correct:q.correct, variants:[...q.variants].sort(()=>Math.random()-.5), image:q.image||null});\n  }\n  for (let i = currentQuestions.length-1; i > 0; i--){\n    const j = Math.floor(Math.random()*(i+1));\n    [currentQuestions[i], currentQuestions[j]] = [currentQuestions[j], currentQuestions[i]];\n  }\n  currentIndex = 0; score = 0; userAnswers = new Array(currentQuestions.length).fill(null);\n  document.getElementById('home-screen').classList.add('hidden');\n  document.getElementById('quiz-screen').classList.remove('hidden');\n  document.getElementById('result-screen').classList.add('hidden');\n  showQuestion(); enableEnterToNext();\n}\nfunction openModal(src){ document.getElementById('imageModal').style.display='flex'; document.getElementById('modalImg').src=src; }\ndocument.querySelector('.close-modal').onclick = () => document.getElementById('imageModal').style.display='none';\nwindow.onclick = e => { if (e.target === document.getElementById('imageModal')) document.getElementById('imageModal').style.display='none'; };\nfunction showQuestion(){\n  const q = currentQuestions[currentIndex];\n  document.getElementById('q-text').innerText = q.text;\n  document.getElementById('progress-text').innerText = `Сұрақ: ${currentIndex+1}/${currentQuestions.length}`;\n  const ic = document.getElementById('question-image-container'); ic.innerHTML = '';\n  if (q.image){\n    const d = document.createElement('div'); d.className='question-image';\n    const im = document.createElement('img'); im.src=q.image; im.onclick=()=>openModal(q.image);\n    d.appendChild(im); ic.appendChild(d);\n  }\n  const c = document.getElementById('options-list'); c.innerHTML = '';\n  const saved = userAnswers[currentIndex];\n  q.variants.forEach(v => {\n    const d = document.createElement('div'); d.className='option-item';\n    if (v.image){\n      const im = document.createElement('img'); im.src=v.image; im.className='option-img';\n      im.onclick = e => { e.stopPropagation(); openModal(v.image); };\n      d.appendChild(im);\n    }\n    const sp = document.createElement('span'); sp.className='option-text'; sp.innerText=v.text; d.appendChild(sp);\n    d.dataset.text = v.text;\n    if (saved !== null){\n      if (v.text === q.correct) d.classList.add('correct'); else if (v.text === saved) d.classList.add('wrong');\n      d.style.pointerEvents='none';\n    } else d.onclick = () => checkAnswer(d, v.text, q.correct);\n    c.appendChild(d);\n  });\n  const nb = document.getElementById('next-btn');\n  if (saved !== null) nb.classList.remove('hidden'); else nb.classList.add('hidden');\n  enableEnterToNext();\n}\nfunction checkAnswer(el, sel, cor){\n  const all = document.querySelectorAll('.option-item');\n  all.forEach(o => o.style.pointerEvents='none');\n  if (sel === cor){ el.classList.add('correct'); score++; }\n  else { el.classList.add('wrong'); all.forEach(o => { if (o.dataset.text === cor) o.classList.add('correct'); }); }\n  userAnswers[currentIndex] = sel;\n  document.getElementById('next-btn').classList.remove('hidden');\n  enableEnterToNext();\n}\nfunction loadNextQuestion(){ if (currentIndex+1 < currentQuestions.length){ currentIndex++; showQuestion(); } else showResults(); }\nfunction showResults(){\n  if (enterHandler){ document.removeEventListener('keydown', enterHandler); enterHandler=null; }\n  document.getElementById('quiz-screen').classList.add('hidden');\n  document.getElementById('result-screen').classList.remove('hidden');\n  document.getElementById('final-score').innerText = `${score}/${currentQuestions.length}`;\n  const p = score/currentQuestions.length*100;\n  document.getElementById('result-message').innerText = p>=90?'Тамаша!':p>=70?'Жақсы!':p>=50?'Орташа':'Қайталаңыз';\n  const dd = document.getElementById('result-details'); dd.innerHTML = '<h4>Сұрақтар бойынша нәтиже:<\/h4>';\n  currentQuestions.forEach((q, i) => {\n    const ok = userAnswers[i] === q.correct;\n    const d = document.createElement('div'); d.className='detail-item';\n    const b = document.createElement('b'); b.textContent = (i+1)+'. ';\n    const t = document.createTextNode(q.text.substring(0,80)+'... ');\n    const s = document.createElement('span'); s.className = ok?'detail-correct':'detail-wrong'; s.textContent = ok?'✓ Дұрыс':'✗ Бұрыс';\n    const br = document.createElement('br'); const sm = document.createElement('small'); sm.textContent = 'Дұрыс жауап: '+q.correct;\n    d.append(b,t,s,br,sm); dd.appendChild(d);\n  });\n  const rb = document.getElementById('retry-wrong-btn'); rb.classList.remove('hidden'); rb.onclick = retryWrongQuestions;\n}\nfunction retryWrongQuestions(){\n  const wrong = currentQuestions.filter((q,i) => userAnswers[i] !== q.correct);\n  if (!wrong.length){ alert('Барлық жауаптар дұрыс!'); return; }\n  currentQuestions = wrong.map(q => ({...q, variants:[...q.variants].sort(()=>Math.random()-.5)}));\n  currentIndex = 0; score = 0; userAnswers = new Array(currentQuestions.length).fill(null);\n  document.getElementById('result-screen').classList.add('hidden');\n  document.getElementById('quiz-screen').classList.remove('hidden');\n  showQuestion(); enableEnterToNext();\n}\nfunction restartQuiz(){\n  if (enterHandler){ document.removeEventListener('keydown', enterHandler); enterHandler=null; }\n  document.getElementById('result-screen').classList.add('hidden');\n  document.getElementById('home-screen').classList.remove('hidden');\n}\ndocument.getElementById('next-btn').onclick = loadNextQuestion;\nbuildBlockButtons();\n<\/script>\n<\/body>\n<\/html>\n";
-const W='http://schemas.openxmlformats.org/wordprocessingml/2006/main';
-const A='http://schemas.openxmlformats.org/drawingml/2006/main';
-const R='http://schemas.openxmlformats.org/officeDocument/2006/relationships';
-const MIME={png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',gif:'image/gif',webp:'image/webp',svg:'image/svg+xml',bmp:'image/bmp'};
-const $=id=>document.getElementById(id);
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-let builtQs=null, builtName='test', pollId=0;
-
-function setStatus(msg,cls){ $('status').className='status '+(cls||''); $('status').textContent=msg; }
-
-// ---------- docx ----------
-async function parseDocx(file){
-  const zip=await JSZip.loadAsync(file);
-  const docFile=zip.file('word/document.xml');
-  if(!docFile) throw new Error('Бұл docx файл емес сияқты.');
-  const dom=s=>new DOMParser().parseFromString(s,'application/xml');
-  const dd=dom(await docFile.async('string'));
-  const rels={};
-  const relFile=zip.file('word/_rels/document.xml.rels');
-  if(relFile){ for(const r of dom(await relFile.async('string')).getElementsByTagName('Relationship')) rels[r.getAttribute('Id')]=r.getAttribute('Target'); }
-  const cache={};
-  async function imageOf(p){
-    let rid=null;
-    const bl=p.getElementsByTagNameNS(A,'blip');
-    if(bl.length) rid=bl[0].getAttributeNS(R,'embed');
-    if(!rid){ const im=p.getElementsByTagName('v:imagedata'); if(im.length) rid=im[0].getAttributeNS(R,'id')||im[0].getAttribute('r:id'); }
-    if(!rid||!rels[rid]) return null;
-    if(cache[rid]) return cache[rid];
-    let path=rels[rid].replace(/^\//,''); if(!path.startsWith('word/')) path='word/'+path;
-    const f=zip.file(path); if(!f) return null;
-    const ext=path.split('.').pop().toLowerCase();
-    return cache[rid]=`data:${MIME[ext]||'image/'+ext};base64,${await f.async('base64')}`;
-  }
-  const questions=[]; let q=null, inQ=false;
-  const push=()=>{ if(q!==null) questions.push({id:questions.length+1,question:q.text,correct:q.correct,variants:q.variants,image:q.image}); };
-  for(const p of dd.getElementsByTagNameNS(W,'p')){
-    const text=Array.from(p.getElementsByTagNameNS(W,'t')).map(t=>t.textContent).join('').trim();
-    if(text.startsWith('<question')){
-      push();
-      q={text:text.replace(/<question\d*>/,'').trim(),correct:null,variants:[],image:await imageOf(p)};
-      inQ=true; continue;
-    }
-    if(!inQ) continue;
-    if(text.startsWith('<variantright>')){
-      const t=text.replace('<variantright>','').trim(); q.correct=t;
-      q.variants.push({text:t,image:await imageOf(p)});
-    } else if(text.startsWith('<variant>')){
-      q.variants.push({text:text.replace('<variant>','').trim(),image:await imageOf(p)});
-    } else {
-      if(text) q.text=q.text?q.text+' '+text:text;
-      const im=await imageOf(p); if(im&&!q.image) q.image=im;
-    }
-  }
-  push();
-  return questions;
-}
-
-function title(){ return $('tName').value.trim()||builtName; }
-function currentHtml(){
-  const esc=s=>JSON.stringify(s).replace(/<\//g,'<\\/');
-  return TPL.replace('__TITLE_JSON__',()=>esc(title())).replace('__QUIZ_JSON__',()=>esc(builtQs));
-}
-
-async function handleFile(file){
-  if(!file) return;
-  if(!/\.docx$/i.test(file.name)){ setStatus('Тек .docx файл қабылданады.','err'); return; }
-  $('result').classList.add('hidden'); $('linkBox').classList.add('hidden'); pollId++;
-  setStatus('Оқып жатыр...');
-  try{
-    const qs=await parseDocx(file);
-    if(!qs.length){ setStatus('Ешқандай сұрақ табылмады. <question> белгілерін тексеріңіз.','err'); return; }
-    builtQs=qs; builtName=file.name.replace(/\.docx$/i,'');
-    setStatus(`✅ ${qs.length} сұрақ өңделді. Суреті бар сұрақтар: ${qs.filter(x=>x.image).length}`,'ok');
-    $('result').classList.remove('hidden');
-    if($('gAuto').checked && hasSettings()) publish();
-  }catch(e){ console.error(e); setStatus('Қате: '+e.message,'err'); }
-}
-
-// ---------- GitHub ----------
-const KEYS=['gUser','gRepo','gBranch','gToken'];
-function cfg(){ return {user:$('gUser').value.trim(),repo:$('gRepo').value.trim(),branch:$('gBranch').value.trim()||'main',token:$('gToken').value.trim()}; }
-function hasSettings(){ const c=cfg(); return c.user&&c.repo&&c.token; }
-const api=c=>`https://api.github.com/repos/${c.user}/${c.repo}`;
-const hdr=c=>({'Authorization':'Bearer '+c.token,'Accept':'application/vnd.github+json'});
-function siteBase(c){ return c.repo.toLowerCase()===(c.user+'.github.io').toLowerCase()?`https://${c.user}.github.io`:`https://${c.user}.github.io/${c.repo}`; }
-const testUrl=(c,name)=>`${siteBase(c)}/tests/${name}/`;
-
-function loadSettings(){
-  try{
-    for(const k of KEYS){ const v=localStorage.getItem('qtion_'+k); if(v) $(k).value=v; }
-    $('gAuto').checked=localStorage.getItem('qtion_gAuto')==='1';
-  }catch(e){}
-  if(!hasSettings()) $('settings').open=true;
-}
-function saveSettings(){
-  try{
-    for(const k of KEYS) localStorage.setItem('qtion_'+k,$(k).value.trim());
-    localStorage.setItem('qtion_gAuto',$('gAuto').checked?'1':'0');
-  }catch(e){}
-  $('saveMsg').textContent='✅ Сақталды';
-  setTimeout(()=>$('saveMsg').textContent='',3000);
-  loadList();
-}
-
-const TR={а:'a',ә:'a',б:'b',в:'v',г:'g',ғ:'g',д:'d',е:'e',ё:'e',ж:'zh',з:'z',и:'i',й:'i',к:'k',қ:'k',л:'l',м:'m',н:'n',ң:'n',о:'o',ө:'o',п:'p',р:'r',с:'s',т:'t',у:'u',ұ:'u',ү:'u',ф:'f',х:'h',һ:'h',ц:'c',ч:'ch',ш:'sh',щ:'sh',ы:'y',і:'i',э:'e',ю:'yu',я:'ya'};
-function slug(s){
-  const t=Array.from(s.toLowerCase()).map(ch=>TR[ch]!==undefined?TR[ch]:ch).join('')
-    .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,50).replace(/-+$/,'');
-  return t||'test';
-}
-function toBase64(str){
-  return new Promise((res,rej)=>{
-    const r=new FileReader();
-    r.onload=()=>res(r.result.split(',')[1]);
-    r.onerror=()=>rej(new Error('Кодтау қатесі'));
-    r.readAsDataURL(new Blob([str],{type:'text/html'}));
-  });
-}
-
-async function publish(){
-  if(!builtQs){ setStatus('Алдымен файл енгізіңіз.','err'); return; }
-  if(!hasSettings()){ $('settings').open=true; setStatus('GitHub баптауларын толтырыңыз.','err'); return; }
-  const c=cfg(); const base=slug(title());
-  setStatus('GitHub-қа жүктеп жатыр...');
-  try{
-    const content=await toBase64(currentHtml());
-    let name=base, res=null;
-    for(let i=0;i<4;i++){
-      res=await fetch(`${api(c)}/contents/tests/${name}/index.html`,{
-        method:'PUT',headers:{...hdr(c),'Content-Type':'application/json'},
-        body:JSON.stringify({message:'Add test '+name,content,branch:c.branch})
-      });
-      if(res.status===422){ name=base+'-'+Math.random().toString(36).slice(2,6); continue; }
-      break;
-    }
-    if(!res.ok){
-      let m=''; try{ m=(await res.json()).message; }catch(e){}
-      throw new Error(`GitHub ${res.status}: ${m||'белгісіз қате'}`);
-    }
-    const url=testUrl(c,name);
-    $('linkInp').value=url; $('linkBox').classList.remove('hidden');
-    setStatus('✅ Тест жүктелді. Сілтеме дайын.','ok');
-    loadList();
-    waitReady(url);
-  }catch(e){ console.error(e); setStatus('Қате: '+e.message,'err'); }
-}
-
-async function waitReady(url){
-  const my=++pollId, el=$('readyMsg'), t0=Date.now();
-  while(Date.now()-t0<420000){
-    if(my!==pollId) return;
-    el.className='hint'; el.textContent=`⏳ Сайт жарияланып жатыр... ${Math.round((Date.now()-t0)/1000)} сек`;
-    try{ const r=await fetch(url+'?_='+Date.now(),{cache:'no-store'}); if(r.ok){ el.className='hint ok'; el.textContent='✅ Дайын! Сілтемені студенттерге жібере аласыз.'; return; } }catch(e){}
-    await sleep(5000);
-  }
-  if(my===pollId){ el.className='hint'; el.textContent='Әлі жарияланбады. Біраз күтіп, сілтемені қолмен ашып көріңіз.'; }
-}
-
-// ---------- тізім ----------
-async function loadList(){
-  const box=$('listBox');
-  if(!hasSettings()){ box.className='hint'; box.textContent='Алдымен GitHub баптауларын толтырып, «Сақтау» басыңыз.'; return; }
-  const c=cfg(); box.className='hint'; box.textContent='Жүктелуде...';
-  try{
-    const r=await fetch(`${api(c)}/contents/tests?ref=${encodeURIComponent(c.branch)}`,{headers:hdr(c),cache:'no-store'});
-    if(r.status===404){ box.textContent='Әзірге тест жоқ.'; return; }
-    if(!r.ok){ let m=''; try{ m=(await r.json()).message; }catch(e){} throw new Error(`GitHub ${r.status}: ${m}`); }
-    const names=(await r.json()).filter(x=>x.type==='dir').map(x=>x.name).sort();
-    if(!names.length){ box.textContent='Әзірге тест жоқ.'; return; }
-    box.className=''; box.innerHTML='';
-    for(const n of names){
-      const url=testUrl(c,n), row=document.createElement('div'); row.className='item';
-      const nm=document.createElement('div'); nm.className='nm'; nm.textContent=n;
-      const sm=document.createElement('small'); sm.textContent=url; nm.appendChild(sm);
-      const bt=document.createElement('div'); bt.className='bt';
-      const open=document.createElement('a'); open.className='btn'; open.href=url; open.target='_blank'; open.rel='noopener'; open.textContent='Ашу';
-      const cp=document.createElement('button'); cp.className='sec sm'; cp.textContent='Көшіру';
-      cp.onclick=async()=>{ try{ await navigator.clipboard.writeText(url); cp.textContent='✓'; setTimeout(()=>cp.textContent='Көшіру',1200); }catch(e){ prompt('Сілтеме:',url); } };
-      const qr=document.createElement('button'); qr.className='sec sm'; qr.textContent='QR'; qr.onclick=()=>showQR(url,n);
-      const del=document.createElement('button'); del.className='danger sm'; del.textContent='Өшіру'; del.onclick=()=>removeTest(n,row);
-      bt.append(open,cp,qr,del); row.append(nm,bt); box.appendChild(row);
-    }
-  }catch(e){ console.error(e); box.className='hint err'; box.textContent='Тізімді алу қатесі: '+e.message; }
-}
-
-async function removeTest(name,row){
-  if(!confirm(`«${name}» тестін өшіру керек пе? Сілтеме жұмыс істемейді.`)) return;
-  const c=cfg(); row.style.opacity='.5';
-  try{
-    const u=`${api(c)}/contents/tests/${name}/index.html`;
-    const g=await fetch(`${u}?ref=${encodeURIComponent(c.branch)}`,{headers:hdr(c),cache:'no-store'});
-    if(!g.ok) throw new Error('Файл табылмады ('+g.status+')');
-    const sha=(await g.json()).sha;
-    const d=await fetch(u,{method:'DELETE',headers:{...hdr(c),'Content-Type':'application/json'},body:JSON.stringify({message:'Delete test '+name,sha,branch:c.branch})});
-    if(!d.ok){ let m=''; try{ m=(await d.json()).message; }catch(e){} throw new Error(`GitHub ${d.status}: ${m}`); }
-    loadList();
-  }catch(e){ row.style.opacity='1'; alert('Өшіру қатесі: '+e.message); }
-}
-
-// ---------- QR ----------
-function showQR(url,name){
-  const box=$('qrBox'); box.innerHTML='';
-  new QRCode(box,{text:url,width:240,height:240,correctLevel:QRCode.CorrectLevel.M});
-  $('qrTitle').textContent=name; $('qrUrl').textContent=url;
-  $('qrModal').classList.remove('hidden'); $('qrModal').dataset.name=name;
-}
-$('qrClose').onclick=()=>$('qrModal').classList.add('hidden');
-$('qrModal').onclick=e=>{ if(e.target===$('qrModal')) $('qrModal').classList.add('hidden'); };
-$('qrDl').onclick=()=>{
-  const src=$('qrBox').querySelector('canvas'); if(!src) return;
-  const m=24, cv=document.createElement('canvas'); cv.width=src.width+2*m; cv.height=src.height+2*m;
-  const ctx=cv.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,cv.width,cv.height); ctx.drawImage(src,m,m);
-  const a=document.createElement('a'); a.href=cv.toDataURL('image/png'); a.download='qr-'+($('qrModal').dataset.name||'test')+'.png'; a.click();
+const G0='stroke-linejoin="round" stroke-linecap="round"',G='fill="rgba(255,255,255,.2)" stroke="#fff" stroke-width="6" '+G0,GN='fill="none" stroke="#fff" stroke-width="6" '+G0;
+const IC={
+tablet:`<rect x="160" y="55" width="180" height="250" rx="20" ${G}/><circle cx="250" cy="285" r="7" ${G}/>`,
+laptop:`<rect x="140" y="95" width="220" height="150" rx="12" ${G}/><path d="M100 255h300l-20 30H120z" ${G}/>`,
+tv:`<rect x="105" y="80" width="290" height="180" rx="14" ${G}/><path d="M200 300h100M250 260v40" ${GN}/>`,
+speaker:`<rect x="190" y="50" width="120" height="240" rx="40" ${G}/><circle cx="250" cy="115" r="24" ${GN}/><circle cx="250" cy="215" r="40" ${GN}/>`,
+bottle:`<rect x="225" y="40" width="50" height="50" rx="8" ${G}/><rect x="190" y="90" width="120" height="200" rx="30" ${G}/><path d="M215 170h70" ${GN}/>`,
+lamp:`<path d="M190 70h120l40 120H150z" ${G}/><path d="M250 190v100M205 295h90" ${GN}/>`,
+chair:`<path d="M190 60h120v120H190z" ${G}/><path d="M170 180h160v40H170z" ${G}/><path d="M190 220v80M310 220v80" ${GN}/>`,
+ball:`<circle cx="250" cy="175" r="95" ${G}/><path d="M250 80v190M155 175h190M185 105q65 70 130 0M185 245q65-70 130 0" ${GN}/>`,
+dumbbell:`<rect x="110" y="130" width="40" height="90" rx="10" ${G}/><rect x="350" y="130" width="40" height="90" rx="10" ${G}/><rect x="150" y="165" width="200" height="20" ${G}/><rect x="80" y="150" width="30" height="50" rx="8" ${G}/><rect x="390" y="150" width="30" height="50" rx="8" ${G}/>`,
+book:`<path d="M250 90q-60-30-120-10v200q60-20 120 10zM250 90q60-30 120-10v200q-60-20-120 10z" ${G}/>`,
+hat:`<path d="M140 210q0-110 110-110t110 110z" ${G}/><path d="M120 210h260q20 0 20 20t-20 20H120q-20 0-20-20t20-20z" ${G}/>`,
+bag:`<path d="M200 110q0-50 50-50t50 50" ${GN}/><path d="M150 110h200l20 190H130z" ${G}/>`,
+mouse:`<rect x="190" y="70" width="120" height="200" rx="60" ${G}/><path d="M250 70v80M190 150h120" ${GN}/>`,
+shirt:`<path d="M180 80l-60 40 25 45 30-18v125h150V147l30 18 25-45-60-40q-20 20-70 20t-70-20z" ${G}/>`,
+box:`<path d="M120 140l130-50 130 50v130l-130 50-130-50zM120 140l130 50 130-50M250 190v130" ${G}/>`,
+mug:`<path d="M170 120h150v120q0 50-50 50h-50q-50 0-50-50z" ${G}/><path d="M320 150h25q25 0 25 30t-25 30h-25" ${GN}/>`,
+headphones:`<path d="M150 215V185a100 100 0 0 1 200 0v30" ${GN}/><rect x="128" y="195" width="46" height="90" rx="16" ${G}/><rect x="326" y="195" width="46" height="90" rx="16" ${G}/>`,
+smartwatch:`<rect x="215" y="30" width="70" height="75" rx="14" ${G}/><rect x="215" y="245" width="70" height="75" rx="14" ${G}/><rect x="185" y="85" width="130" height="180" rx="38" ${G}/><rect x="200" y="102" width="100" height="146" rx="26" fill="#3b1a6e" stroke="#fff" stroke-width="3"/><text x="250" y="190" font-size="30" text-anchor="middle" fill="#ffe14d" font-family="Arial" font-weight="bold">10:09</text><rect x="313" y="160" width="8" height="30" rx="4" fill="#fff"/>`,
+smartphone:`<rect x="195" y="40" width="110" height="230" rx="22" ${G}/><rect x="206" y="62" width="88" height="186" rx="8" fill="#3b1a6e" stroke="#fff" stroke-width="2"/><circle cx="250" cy="52" r="4" fill="#fff"/><circle cx="250" cy="160" r="26" fill="none" stroke="#ffe14d" stroke-width="4"/>`,
+camera:`<rect x="205" y="85" width="70" height="30" rx="8" ${G}/><rect x="135" y="105" width="230" height="145" rx="20" ${G}/><circle cx="250" cy="178" r="52" fill="#3b1a6e" stroke="#fff" stroke-width="6"/><circle cx="250" cy="178" r="26" fill="none" stroke="#ffe14d" stroke-width="4"/><circle cx="335" cy="130" r="7" fill="#fff"/>`,
+wristwatch:`<rect x="210" y="25" width="80" height="90" rx="12" ${G}/><rect x="210" y="235" width="80" height="90" rx="12" ${G}/><circle cx="250" cy="175" r="75" ${G}/><circle cx="250" cy="175" r="60" fill="#3b1a6e" stroke="#fff" stroke-width="3"/><path d="M250 175V132M250 175l28 14" ${GN}/><circle cx="250" cy="175" r="5" fill="#ffe14d"/>`,
+sunglasses:`<path d="M95 150h310" ${GN}/><rect x="100" y="150" width="130" height="90" rx="38" ${G}/><rect x="270" y="150" width="130" height="90" rx="38" ${G}/><path d="M230 170q20-18 40 0" ${GN}/>`,
+backpack:`<path d="M215 70q35-40 70 0" ${GN}/><rect x="160" y="70" width="180" height="230" rx="55" ${G}/><rect x="190" y="200" width="120" height="70" rx="16" fill="#3b1a6e" stroke="#fff" stroke-width="4"/><path d="M190 125h120" ${GN}/>`,
+sneakers:`<path d="M90 255V150q0-10 12-10h45q20 0 30 22 12 30 70 38 70 12 120 40 20 12 20 30v25H90z" ${G}/><path d="M90 255h250" stroke="#ffe14d" stroke-width="10" stroke-linecap="round"/><path d="M175 175l25 12M205 190l25 12" ${GN}/>`
 };
-$('btnQrNew').onclick=()=>showQR($('linkInp').value,title());
 
-// ---------- UI ----------
-const drop=$('drop'), fileInp=$('file');
-drop.onclick=()=>fileInp.click();
-fileInp.onchange=()=>{ handleFile(fileInp.files[0]); fileInp.value=''; };
-['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over');}));
-['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over');}));
-drop.addEventListener('drop',e=>handleFile(e.dataTransfer.files[0]));
-$('btnOpen').onclick=()=>window.open(URL.createObjectURL(new Blob([currentHtml()],{type:'text/html'})),'_blank');
-$('btnDl').onclick=()=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([currentHtml()],{type:'text/html'})); a.download='index.html'; a.click(); };
-$('btnPub').onclick=publish;
-$('btnSave').onclick=saveSettings;
-$('btnRefresh').onclick=loadList;
-$('btnCopy').onclick=async()=>{ try{ await navigator.clipboard.writeText($('linkInp').value); $('btnCopy').textContent='Көшірілді ✓'; setTimeout(()=>$('btnCopy').textContent='Көшіру',1500);}catch(e){ $('linkInp').select(); } };
-loadSettings(); loadList();
-</script>
-</body>
-</html>
+
+const $=id=>document.getElementById(id);
+const ld=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const fmt=n=>Math.round(n).toLocaleString('ru-RU')+' ₸';
+const U=i=>i.startsWith('photo-')?`https://images.unsplash.com/${i}?w=500&q=80&auto=format&fit=crop`:`https://unsplash.com/photos/${i}/download?force=true&w=600`;
+const D=['Завтра','Послезавтра','14 ноября','12 ноября'];
+const P=[
+[1,'Наушники беспроводные Pro','Sonic','Электроника',18900,45,4.8,2703,'headphones',280,'photo-1505740420928-5e560c06d30e'],
+[2,'Смарт-часы Series 9','Fitto','Электроника',24500,60,4.7,1280,'smartwatch',200,'photo-1546868871-7041f2a55e12'],
+[3,'Смартфон 128 ГБ','Nova','Электроника',129000,27,4.9,9340,'smartphone',250,'photo-1511707171634-5f897ff02aa9'],
+[4,'Фотоаппарат зеркальный','Lumo','Электроника',189000,30,4.8,412,'camera',330,'photo-1526170375885-4d8ecf77b99f'],
+[5,'Часы наручные классика','Chrono','Аксессуары',12900,55,4.6,5310,'wristwatch',30,'photo-1523275335684-37898b6baf30'],
+[6,'Солнцезащитные очки','Aviar','Аксессуары',3800,70,4.5,8120,'sunglasses',175,'photo-1572635196237-14b3f281503f'],
+[7,'Рюкзак городской 25 л','Urban','Аксессуары',7900,50,4.7,15600,'backpack',140,'photo-1553062407-98eeb64c6a62'],
+[8,'Кроссовки красные','Rush','Обувь',15600,40,4.8,3450,'sneakers',350,'photo-1542291026-7eec264c27ff'],
+[9,'Кроссовки спортивные','Rush','Обувь',13200,35,4.7,2210,'sneakers',220,'photo-1491553895911-0055eca6402d'],
+[10,'Костюм рабочий зимний','СПРУТ','Одежда',19520,66,4.8,659,'shirt',215,'photo-1551028719-00167b16eac5'],
+[11,'Футболка оверсайз','Basic','Одежда',4900,60,4.6,22800,'shirt',100,'photo-1521572163474-6864f9cf17ab'],
+[12,'Кружка керамическая','Homey','Дом',1900,45,4.9,30500,'mug',20,'photo-1514228742587-6b1558fcca3d'],
+[13,'Набор для подарка','Gifty','Дом',5400,54,4.9,7100,'box',300,'photo-1549465220-1a8b9238cd48'],
+[14,'Ботинки зимние','Shuzzi','Обувь',18060,65,4.9,739,'sneakers',240,'S7B81n3jzLo'],
+[15,'Микроволновая печь 20 л','BBK','Дом',29000,27,4.8,127,'box',190,'tUFogT8Mn8U'],
+[16,'Стиральный порошок 18 кг','TIDE','Дом',8820,54,4.9,354592,'box',25,'DEl1Mt7Fl5A']
+].map(([id,n,b,c,p,d,r,rv,k,h,i])=>({id,n,b,c,p,d,r,rv,k,h,i,o:Math.round(p/(1-d/100)),dl:D[id%4]}));
+
+const EX={
+'Электроника':[['Планшет 10"','tablet',89000],['Ноутбук 15.6"','laptop',390000],['Телевизор 43"','tv',210000],['Колонка Bluetooth','speaker',15900],['Мышь беспроводная','mouse',5900],['Клавиатура игровая','mouse',9900],['Power bank 20000 mAh','smartphone',9900],['Зарядка быстрая 65 Вт','smartphone',4900],['Наушники игровые','headphones',21900],['Смарт-браслет','smartwatch',11900],['Экшн-камера 4K','camera',49900],['Веб-камера Full HD','camera',12900],['Умная колонка','speaker',29900],['Монитор 27"','tv',119000]],
+'Аксессуары':[['Рюкзак школьный','backpack',9900],['Сумка через плечо','bag',8900],['Шапка вязаная','hat',3500],['Кепка бейсболка','hat',2900],['Часы мужские','wristwatch',14900],['Часы женские','wristwatch',13900],['Очки авиаторы','sunglasses',4500],['Кошелёк кожаный','bag',5900],['Ремень кожаный','bag',4200],['Сумка спортивная','bag',11900],['Чемодан 20 кг','backpack',39900],['Зонт складной','bag',3900]],
+'Обувь':[['Кроссовки белые','sneakers',14900],['Кроссовки беговые','sneakers',18900],['Кеды классические','sneakers',9900],['Ботинки мужские','sneakers',24900],['Сапоги женские','sneakers',28900],['Тапочки домашние','sneakers',2900],['Сандалии летние','sneakers',6900],['Туфли классические','sneakers',21900],['Угги','sneakers',15900],['Резиновые сапоги','sneakers',5900],['Бутсы футбольные','sneakers',19900],['Лоферы','sneakers',17900],['Слипоны','sneakers',8900]],
+'Одежда':[['Футболка хлопок','shirt',3900],['Худи с капюшоном','shirt',11900],['Джинсы прямые','shirt',13900],['Куртка зимняя','shirt',34900],['Пуховик','shirt',49900],['Свитер шерстяной','shirt',14900],['Платье летнее','shirt',12900],['Рубашка классическая','shirt',8900],['Спортивный костюм','shirt',19900],['Шорты','shirt',4900],['Пальто','shirt',59900],['Носки 5 пар','shirt',1900],['Шарф','hat',3900],['Перчатки','hat',2900]],
+'Дом':[['Кружка с принтом','mug',1500],['Набор посуды','mug',15900],['Лампа настольная','lamp',5900],['Люстра','lamp',29900],['Кресло офисное','chair',49900],['Стул деревянный','chair',12900],['Подушка ортопедическая','box',7900],['Одеяло','box',14900],['Постельное бельё','box',11900],['Чайник электрический','mug',9900],['Блендер','box',14900],['Пылесос','box',59900],['Утюг паровой','box',11900],['Мультиварка','box',27900]],
+'Спорт':[['Мяч футбольный','ball',7900],['Мяч баскетбольный','ball',8900],['Гантели 2×5 кг','dumbbell',12900],['Коврик для йоги','box',5900],['Скакалка','dumbbell',1900],['Палатка 3-местная','box',39900],['Спальный мешок','box',17900],['Термос 1 л','mug',6900],['Фитнес-резинки','dumbbell',3900],['Боксёрские перчатки','dumbbell',11900],['Ракетка теннисная','ball',15900],['Шлем велосипедный','hat',9900],['Бутылка спортивная','bottle',2500],['Рюкзак туристический','backpack',24900]],
+'Красота':[['Парфюм женский','bottle',22900],['Парфюм мужской','bottle',24900],['Крем для лица','bottle',6900],['Шампунь','bottle',3200],['Помада','bottle',3900],['Тушь для ресниц','bottle',3500],['Фен для волос','box',19900],['Выпрямитель для волос','box',17900],['Электробритва','box',21900],['Электрическая зубная щётка','box',12900],['Маска для лица','bottle',1900],['Гель для душа','bottle',2400],['Набор кистей для макияжа','box',5900]],
+'Детям':[['Конструктор 500 деталей','box',14900],['Плюшевый мишка','box',5900],['Кукла','box',7900],['Машинка на радиоуправлении','box',12900],['Пазл 1000 деталей','box',4900],['Детская книга сказок','book',2900],['Раскраска','book',900],['Детский рюкзак','backpack',6900],['Детские кроссовки','sneakers',9900],['Комбинезон детский','shirt',14900],['Игровой набор','box',8900],['Самокат','ball',19900],['Развивающий планшет','tablet',11900]],
+'Книги':[['Роман «Тихий дом»','book',3900],['Детектив','book',3500],['Фантастика','book',4200],['Бизнес-книга','book',5900],['Психология','book',4900],['Учебник английского','book',6900],['Словарь','book',4500],['Энциклопедия','book',9900],['Блокнот А5','book',1500],['Ежедневник','book',2900],['Набор ручек','box',1900],['Научно-популярная книга','book',5200]]};
+const BR={'Электроника':['Nova','Sonic','Lumo','Fitto'],'Аксессуары':['Urban','Chrono','Aviar'],'Обувь':['Rush','Shuzzi','Stride'],'Одежда':['Basic','Nordic','Urban'],'Дом':['Homey','Gifty','Cozy','BBK'],'Спорт':['ProFit','Active','Rush'],'Красота':['Lumi','Aura','Belle'],'Детям':['KidsLand','Toyo','Mimi'],'Книги':['Эксмо','АСТ','Дело']};
+const PK={headphones:'photo-1505740420928-5e560c06d30e',smartwatch:'photo-1546868871-7041f2a55e12',smartphone:'photo-1511707171634-5f897ff02aa9',camera:'photo-1526170375885-4d8ecf77b99f',wristwatch:'photo-1523275335684-37898b6baf30',sunglasses:'photo-1572635196237-14b3f281503f',backpack:'photo-1553062407-98eeb64c6a62',sneakers:['photo-1542291026-7eec264c27ff','photo-1491553895911-0055eca6402d'],shirt:['photo-1551028719-00167b16eac5','photo-1521572163474-6864f9cf17ab'],mug:'photo-1514228742587-6b1558fcca3d',tablet:'aeVCU-vit3o',laptop:'tAKXap853rY',tv:'cCkKa3QZ7Sg',bag:'nKK32qJheBY',speaker:'photo-1505740420928-5e560c06d30e',mouse:'tAKXap853rY',hat:'photo-1551028719-00167b16eac5',lamp:'nn378mWMi88',chair:'nn378mWMi88',ball:['photo-1542291026-7eec264c27ff','photo-1491553895911-0055eca6402d'],dumbbell:['photo-1491553895911-0055eca6402d','photo-1542291026-7eec264c27ff'],bottle:'DEl1Mt7Fl5A',book:'aeVCU-vit3o'};const PKf=(k,c)=>k=='box'?(c=='Дом'||c=='Красота'?'tUFogT8Mn8U':'photo-1549465220-1a8b9238cd48'):PK[k];
+let nid=17;
+for(const c in EX)EX[c].forEach((e,j)=>{const id=nid++,d=20+(id*7)%51;P.push({id,n:e[0],b:BR[c][j%BR[c].length],c,p:e[2],d,r:+(4.3+(id*13)%7/10).toFixed(1),rv:60+(id*7919)%30000,k:e[1],h:(id*47)%360,i:(q=>Array.isArray(q)?q[id%q.length]:q||'')(PKf(e[1],c)),o:Math.round(e[2]/(1-d/100)),dl:D[id%4]})});
+const CT=['Все',...new Set(P.map(x=>x.c))];
+let lim=24,cart=ld('wc',{}),fav=ld('wf',[]),user=ld('wu',null),orders=ld('wo',[]),addr=ld('wa',''),cat='Все',view='all',sq='',promo=0,ship='p',bi=0;
+function svg(x){return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400" viewBox="0 0 500 400"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${x.h},70%,60%)"/><stop offset="1" stop-color="hsl(${x.h+40},65%,38%)"/></linearGradient></defs><rect width="500" height="400" fill="url(#g)"/>${IC[x.k]}</svg>`)}
+const KW={1:'headphones',2:'smartwatch',3:'smartphone',4:'camera',5:'wristwatch',6:'sunglasses',7:'backpack',8:'sneakers',9:'sneakers',10:'winter,jacket',11:'tshirt',12:'ceramic,mug',13:'gift,box',14:'winter,boots',15:'microwave',16:'laundry,detergent'};
+const F=x=>KW[x.id]?`https://loremflickr.com/500/625/${KW[x.id]}?lock=${x.id}`:'';
+const im=x=>`src="${svg(x)}" data-r="img/${x.id}.jpg|${x.i?U(x.i):''}|${F(x)}"`;
+function up(){document.querySelectorAll('img[data-r]').forEach(e=>{const u=e.dataset.r.split('|').filter(Boolean);e.removeAttribute('data-r');(function t(i){if(i>=u.length)return;const m=new Image();m.onload=()=>{e.src=u[i]};m.onerror=()=>t(i+1);m.src=u[i]})(0)})}
+function toast(t){const e=$('ts');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),1700)}
+function card(x){return `<div class="c" onclick="pm(${x.id})"><div class="im"><img ${im(x)} alt="${x.n}"><span class="dc">-${x.d}%</span><span class="hs ${fav.includes(x.id)?'on':''}" onclick="event.stopPropagation();tf(${x.id})">♥</span></div><div class="pr"><b>${fmt(x.p)}</b> <s>${fmt(x.o)}</s></div><div class="nm"><b>${x.b}</b> / ${x.n}</div><div class="rt">★ ${String(x.r).replace('.',',')} · ${x.rv.toLocaleString('ru-RU')} оценок</div><button class="bt" onclick="event.stopPropagation();add(${x.id})">🛒 ${cart[x.id]?'В корзине ('+cart[x.id]+')':x.dl}</button></div>`}
+function show(m){if(!m)lim=24;
+ const mn=+$('pmin').value||0,mx=+$('pmax').value||1e9,r=+$('rt').value,d=$('d50').checked?50:0,s=$('so').value;
+ let l=P.filter(x=>(cat=='Все'||x.c==cat)&&(view!='fav'||fav.includes(x.id))&&(x.n+' '+x.b).toLowerCase().includes(sq.trim().toLowerCase())&&x.p>=mn&&x.p<=mx&&x.r>=r&&x.d>=d);
+ if(s=='a')l.sort((a,b)=>a.p-b.p);if(s=='d')l.sort((a,b)=>b.p-a.p);if(s=='r')l.sort((a,b)=>b.r-a.r);if(s=='s')l.sort((a,b)=>b.d-a.d);if(s=='n')l.sort((a,b)=>b.rv-a.rv);
+ $('ttl').textContent=(view=='fav'?'Избранное':cat=='Все'?'Все товары':cat)+' · '+l.length;
+ $('gr').innerHTML=l.slice(0,lim).map(card).join('')||'<div class="em">Ничего не найдено</div>';$('mr').style.display=l.length>lim?'block':'none';$('mr').textContent='Показать ещё ('+(l.length-lim)+')';
+ $('ch').innerHTML=CT.map(c=>`<button class="chip ${c==cat&&view=='all'?'on':''}" onclick="cat='${c}';view='all';show()">${c}</button>`).join('');
+ $('cl').innerHTML=CT.map(c=>`<div class="cl" onclick="cat='${c}';view='all';cq();show()">${c}<span>${c=='Все'?P.length:P.filter(x=>x.c==c).length}</span></div>`).join('');
+ up();
+}
+function rs(){['pmin','pmax','q'].forEach(i=>$(i).value='');$('rt').value=0;$('so').value='';$('d50').checked=false;sq='';cat='Все';view='all';show()}
+function onq(){sq=$('q').value;const v=sq.trim().toLowerCase();$('sg').innerHTML=v?P.filter(x=>x.n.toLowerCase().includes(v)).slice(0,5).map(x=>`<div onclick="pk(${x.id})">${x.n}</div>`).join(''):'';show()}
+function pk(id){$('sg').innerHTML='';pm(id)}
+document.addEventListener('click',e=>{if(!e.target.closest('.sb'))$('sg').innerHTML=''});
+function fv(){view=view=='fav'?'all':'fav';show();window.scrollTo({top:300,behavior:'smooth'})}
+function tf(id){fav=fav.includes(id)?fav.filter(i=>i!=id):[...fav,id];sv('wf',fav);rd();show(1)}
+function add(id){cart[id]=(cart[id]||0)+1;sv('wc',cart);rd();show(1);toast('Добавлено в корзину ✓')}
+function ch(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];sv('wc',cart);rd();show(1)}
+function tot(){let s=0,o=0;for(const k in cart){const x=P.find(p=>p.id==k);s+=x.p*cart[k];o+=x.o*cart[k]}const pr=Math.round(s*promo),sh=ship=='c'&&s>0&&s-pr<50000?1500:0;return{s,o,sale:o-s,pr,sh,t:s-pr+sh}}
+function rd(){
+ const ks=Object.keys(cart);$('cc').textContent=ks.length?ks.reduce((s,k)=>s+cart[k],0):'';$('fc').textContent=fav.length||'';
+ $('ci').innerHTML=ks.length?ks.map(k=>{const x=P.find(p=>p.id==k);return `<div class="ci"><img ${im(x)}><div><b>${x.n}</b><small>${x.b}</small><div><b style="color:#cb11ab">${fmt(x.p)}</b> <s style="color:#999">${fmt(x.o)}</s></div><div class="qq"><button onclick="ch(${k},-1)">−</button><span>${cart[k]}</span><button onclick="ch(${k},1)">+</button><button class="dl" onclick="ch(${k},-99)">✕</button></div></div></div>`}).join(''):'<div class="em">Корзина пуста</div>';
+ const t=tot();$('tt').innerHTML=`<div class="tl"><span>Товары (по старой цене)</span><span>${fmt(t.o)}</span></div><div class="tl"><span>Скидка</span><span>-${fmt(t.sale)}</span></div><div class="tl"><span>Промокод</span><span>-${fmt(t.pr)}</span></div><div class="tl"><span>Доставка</span><span>${t.sh?fmt(t.sh):'Бесплатно'}</span></div><div class="tl g"><span>Итого</span><span>${fmt(t.t)}</span></div>`;
+ $('us').textContent=user?user.n.slice(0,10):'Войти';$('ad').textContent=addr?addr.slice(0,12):'Адрес';up();
+}
+function ap(){const c=$('pc').value.trim().toUpperCase();promo=c=='SALE10'?.1:c=='VIP20'?.2:0;toast(promo?'Промокод применён: -'+promo*100+'%':'Промокод не найден');rd()}
+function oq(id){cq();$(id).classList.add('on');$('ov').classList.add('on');if(id=='dr'){if(user){$('fn').value=$('fn').value||user.n;$('fp').value=$('fp').value||user.p}$('fa').value=$('fa').value||addr}}
+function cq(){['dr','cg','ov'].forEach(i=>$(i).classList.remove('on'))}
+function mo(h){$('bx').innerHTML=h;$('md').classList.add('on');up()}
+function mc(){$('md').classList.remove('on')}
+function adr(){const a=prompt('Введите адрес доставки',addr);if(a!==null){addr=a.trim();sv('wa',addr);rd()}}
+function pm(id){const x=P.find(p=>p.id==id),sz=x.c=='Одежда'?['S','M','L','XL']:x.c=='Обувь'?[38,39,40,41,42,43]:null;
+ mo(`<button class="xx" onclick="mc()">✕</button><div class="pg"><img class="big" ${im(x)}><div><small>${x.b} · ${x.c}</small><h2>${x.n}</h2><div class="rt">★ ${x.r} · ${x.rv.toLocaleString('ru-RU')} оценок</div><div class="pr"><b>${fmt(x.p)}</b> <s>${fmt(x.o)}</s> <span class="dc2">-${x.d}%</span></div><p class="ds">Качественный товар от бренда ${x.b}. Гарантия 1 год, возврат в течение 14 дней. Ближайшая доставка: ${x.dl}.</p>${sz?`<div class="sz">${sz.map((s,i)=>`<button class="${i?'':'on'}" onclick="this.parentNode.querySelectorAll('button').forEach(b=>b.classList.remove('on'));this.classList.add('on')">${s}</button>`).join('')}</div>`:''}<div class="row2"><button class="bt" onclick="add(${id});mc()">В корзину</button><button class="bt2" onclick="add(${id});mc();oq('dr')">Купить сразу</button></div><button class="bt2" style="width:100%;margin-top:10px" onclick="tf(${id});pm(${id})">${fav.includes(id)?'♥ В избранном':'♡ В избранное'}</button></div></div>`)}
+function prof(){
+ if(!user)return mo(`<button class="xx" onclick="mc()">✕</button><div class="lg"><h2>Вход</h2><input id="ln" placeholder="Имя"><input id="lp" placeholder="Телефон +7"><button class="bt" style="width:100%;padding:12px" onclick="lg()">Войти</button></div>`);
+ mo(`<button class="xx" onclick="mc()">✕</button><h2>${user.n}</h2><p>${user.p}</p><h3 style="margin:14px 0 6px">Мои заказы</h3>${orders.map((o,i)=>`<div class="cl" onclick="rcp(orders[${i}])"><span>№${o.no} · ${o.dt}</span><b>${fmt(o.t.t)}</b></div>`).join('')||'<p>Заказов пока нет</p>'}<button class="bt2" style="margin-top:14px" onclick="user=null;sv('wu',null);rd();mc()">Выйти</button>`)}
+function lg(){const n=$('ln').value.trim(),p=$('lp').value.trim();if(!n||!p)return toast('Введите имя и телефон');user={n,p};sv('wu',user);rd();mc();toast('Добро пожаловать, '+n+'!')}
+function co(){
+ if(!Object.keys(cart).length)return toast('Корзина пуста');
+ const n=$('fn').value.trim(),p=$('fp').value.trim(),a=$('fa').value.trim();if(!n||!p||!a)return toast('Заполните имя, телефон и адрес');
+ const o={no:Math.floor(Math.random()*9e5+1e5),dt:new Date().toLocaleString('ru-RU'),n,p,a,sh:ship=='c'?'Курьер':'Пункт выдачи',py:$('py').value,it:Object.keys(cart).map(k=>{const x=P.find(y=>y.id==k);return{n:x.n,q:cart[k],p:x.p}}),t:tot()};
+ orders.unshift(o);sv('wo',orders);addr=a;sv('wa',a);cart={};sv('wc',cart);promo=0;rd();show();cq();rcp(o)}
+function rcp(o){mo(`<button class="xx nop" onclick="mc()">✕</button><div class="chk"><h2>ElbrusSHOP</h2><div class="c0">Чек №${o.no} · ${o.dt}</div><div class="c0">${o.n} · ${o.p}</div><div class="c0">${o.sh}: ${o.a}</div><hr>${o.it.map(i=>`<div class="cr"><span>${i.n}<br>${i.q} × ${fmt(i.p)}</span><b>${fmt(i.p*i.q)}</b></div>`).join('')}<hr><div class="cr"><span>Скидка на товары</span><span>-${fmt(o.t.sale)}</span></div><div class="cr"><span>Промокод</span><span>-${fmt(o.t.pr)}</span></div><div class="cr"><span>Доставка</span><span>${o.t.sh?fmt(o.t.sh):'Бесплатно'}</span></div><div class="cr"><span>Оплата</span><span>${o.py}</span></div><hr><div class="cr t"><span>ИТОГО</span><span>${fmt(o.t.t)}</span></div><hr><div class="c0">Спасибо за покупку! ♥</div><div class="row2 nop" style="margin-top:14px"><button class="bt" onclick="window.print()">Печать</button><button class="bt2" onclick="mc()">Закрыть</button></div></div>`)}
+const BN=[['11.11 РАСПРОДАЖА','Скидки до 70% на тысячи товаров','linear-gradient(120deg,#cb11ab,#481173)'],['Электроника','Наушники, часы и смартфоны со скидкой','linear-gradient(120deg,#2b5876,#4e4376)'],['Бесплатная доставка','Курьер от 50 000 ₸ бесплатно. Промокод VIP20 = -20%','linear-gradient(120deg,#ff5f6d,#cb11ab)']];
+$('bn').innerHTML=BN.map(b=>`<div class="sl" style="background:${b[2]}"><h2>${b[0]}</h2><p>${b[1]}</p></div>`).join('');
+function bn(d){bi=(bi+d+3)%3;$('bn').style.transform=`translateX(-${bi*100}%)`}
+setInterval(()=>bn(1),4500);
+rd();show();
+</script></body></html>
